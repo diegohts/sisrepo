@@ -4,8 +4,8 @@ import { createPasswordHash } from "../services/auth";
 class UsersController {
     async index(req, res) {
         try {
-            const user = await User.find();
-            return res.status(200).json(user);
+            const users = await User.find();
+            return res.status(200).json(users);
         } catch(err) {
             console.error(err);
             return res.status(500).json({ error: "Internal server error." });
