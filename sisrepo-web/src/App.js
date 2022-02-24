@@ -1,8 +1,10 @@
 import './App.css';
+import AppRoutes from './AppRoutes';
+
 
 function App() {
   return (
-    <h1>App Sisrepo-web</h1>
+    <AppRoutes />
   );
 }
 
