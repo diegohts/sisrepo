@@ -20,7 +20,7 @@ const Repositories = ({ repositories, onDelete, onAddRepo }) => {
                                     {repository.name.substring(repository.name.indexOf('/') + 1)}
                                 </div>
                             </div>
-                            <button onClick={() => onDelete(null)}>Apagar</button>
+                            <button onClick={() => onDelete(repository)}>Apagar</button>
                         </li>
                     ))
                 }
