@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-const Repositories = ({ repositories, onDelete, onAddRepo }) => {
+const Repositories = ({ repositories, onDelete, onNewRepo }) => {
     const [ newRepo, setNewRepo ] = useState('');
 
     return (
@@ -36,7 +36,8 @@ const Repositories = ({ repositories, onDelete, onAddRepo }) => {
                     value={ newRepo }
                     onChange={(e) => setNewRepo(e.target.value)}
                 />
-                <button onClick={onAddRepo}>Adicionar</button>
+                {/* {console.log(newRepo)} */}
+                <button onClick={() => onNewRepo(newRepo)}>Adicionar</button>
             </div>
          </div>
     )

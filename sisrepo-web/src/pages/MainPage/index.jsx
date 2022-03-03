@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getRepositories } from "../../services/api";
+import { getRepositories, createRepository, destroyRepository } from "../../services/api";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import Repositories from "./Repositories";
@@ -38,19 +38,33 @@ const MainPage = () => {
         console.log('Search: ',query);
     }
 
-    const handleDeleteRepo = (repository) => {
+    const handleDeleteRepo = async (repository) => {
         console.log('Delete Repo: ', repository);
+        try {
+            await destroyRepository(userId, repository._id);
+            await loadData();
+        } catch (err) {
+            console.error(err);
+            setLoadingError(true);
+        }
     }
 
-    const handleAddRepo = (url) => {
-        console.log('Adicionando Repositório: ', url);
+    const handleNewRepo = async (url) => {
+        console.log('Novo Repositório: ', url);
+        try {
+            await createRepository(userId, url);
+            await loadData();
+        } catch (err) {
+            console.error(err);
+            setLoadingError(true);
+        }
     }
 
     if (loadingError) {
         return(
             <div className="loading">
                 Erro ao carregar os dados de repositório.
-                <Link to="/login">Voltar</Link>
+                <Link to="/login">  Voltar</Link>
             </div>
         )
     }
@@ -70,7 +84,7 @@ const MainPage = () => {
             <Repositories 
                 repositories={repositories} 
                 onDelete={handleDeleteRepo} 
-                onAddRepo={handleAddRepo} />
+                onNewRepo={handleNewRepo} />
 
         </div>
     )
