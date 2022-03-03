@@ -12,6 +12,8 @@ export const getRepositories = async(userId, query) => {
     }
     // http://localhost:8000/users/ID/repositories/?q=xxx
 
+    console.log('query', url);
+
     return api.get(url);
 };
 

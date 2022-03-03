@@ -16,7 +16,7 @@ const MainPage = () => {
     const loadData = async (query = '') => {
         try {
             setLoading(true);
-            const response = await getRepositories(userId);
+            const response = await getRepositories(userId, query);
 
             setRepositories(response.data);
             setLoading(false);
@@ -35,6 +35,7 @@ const MainPage = () => {
     }
 
     const handleSearch = (query) => {
+        loadData(query);
         console.log('Search: ',query);
     }
 
